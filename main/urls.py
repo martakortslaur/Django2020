@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from foobar import urls as foobar_urls
+from testing import urls as testing_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('foobar/', include(foobar_urls))
+    path('foobar/', include(foobar_urls)),
+    path('testing/', include(testing_urls))
 ]
