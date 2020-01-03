@@ -15,4 +15,4 @@ def get_ready_page(request):
 
 
 def get_main_page(request):
-    return render(request, 'foobar/main_page.html')
+    return render(request, 'foobar/main_page.html', {'name' : "Marta", 'year' : "2020"})
