@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Movies
 
 
 # Create your views here.
@@ -18,3 +19,8 @@ def get_main_page(request):
     names = ["Darragh", "Marta", "Rory", "Xav"]
     return render(request, 'foobar/main_page.html',
                 {'names' : names, 'year' : "2020"})
+
+
+def get_movies(request):
+    movies = Movies.objects.all()
+    return render(request, 'foobar/movies.html', {"movies": movies})
