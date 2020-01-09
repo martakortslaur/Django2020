@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap_tags %}
 {% block title %}
 Create Movie
 {% endblock %}
@@ -6,6 +7,8 @@ Create Movie
 <form action="/foobar/create-movie" method="POST">
 
     {% csrf_token %}
+
+    {{ form|as_bootstrap}}
 
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>

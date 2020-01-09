@@ -29,7 +29,8 @@ def get_movies(request):
 def create_movie(request):
 
     if request.method == "GET":
-        return render(request, 'foobar/create_movie.html')
+        form = MoviesForm()
+        return render(request, 'foobar/create_movie.html', {'form': form})
     
     if request.method == "POST":
         form = MoviesForm(request.POST)
