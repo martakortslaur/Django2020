@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Movies
-
+from .forms import MoviesForm
 
 # Create your views here.
 def get_first_page(request):
@@ -24,3 +24,17 @@ def get_main_page(request):
 def get_movies(request):
     movies = Movies.objects.all()
     return render(request, 'foobar/movies.html', {"movies": movies})
+
+
+def create_movie(request):
+
+    if request.method == "GET":
+        return render(request, 'foobar/create_movie.html')
+    
+    if request.method == "POST":
+        form = MoviesForm(request.POST)
+        if form.is_valid():
+            movie = form.save(commit=False)
+            movie.save()
+
+            return render(request, "foobar/movie-creation-confirmed.html")
