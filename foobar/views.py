@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Movies
 from .forms import MoviesForm
 
@@ -39,3 +39,16 @@ def create_movie(request):
             movie.save()
 
             return render(request, "foobar/movie-creation-confirmed.html")
+
+def update_movie(request, pk):
+
+    if request.method == "GET":
+        movie = get_object_or_404(Movies, pk=pk)
+        form = MoviesForm(instance=movie)
+        return render(request, "foobar/movie-update.html", {'form': form, 'id': pk})
+
+    if request.method == 'POST':
+        movie = get_object_or_404(Movies, pk=pk)
+        form = MoviesForm(request.POST, instance=movie)
+        form.save()
+        return render(request, "foobar/movie-creation-confirmed.html")
