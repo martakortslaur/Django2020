@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Movies
 from .forms import MoviesForm
 
@@ -52,3 +52,8 @@ def update_movie(request, pk):
         form = MoviesForm(request.POST, instance=movie)
         form.save()
         return render(request, "foobar/movie-creation-confirmed.html")
+
+def delete_movie(request, pk):
+    movie = get_object_or_404(Movies, pk=pk)
+    movie.delete()
+    return redirect('get_movies')
